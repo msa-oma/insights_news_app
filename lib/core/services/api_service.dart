@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:insights_news_app/core/services/api_constants.dart';
+import 'package:insights_news_app/featurs/sources/sources_model/sources_model.dart';
 
 import '../../featurs/home/data/news_model/news_model.dart';
 
@@ -35,12 +36,12 @@ class ApiServices {
   }
 
   // getBySource
-  static Future<NewsModel?> getNewsBySource(String source) async {
+  static Future<SourceModel?> getNewsBySource() async {
     try {
       var response = await Dio().get(
-          '${ApiConstants.apiBaseUrl}country=us&source=$source&apiKey=${ApiConstants.apiKey}');
+          'https://newsapi.org/v2/top-headlines/sources?apiKey=${ApiConstants.apiKey}');
       if (response.statusCode == 200) {
-        NewsModel news = NewsModel.fromJson(response.data);
+        SourceModel news = SourceModel.fromJson(response.data);
         return news;
       }
     } catch (e) {

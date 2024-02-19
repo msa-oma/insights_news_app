@@ -68,7 +68,11 @@ class _HomeScreenState extends State<HomeScreen> {
                       dotHeight: 14,
                       dotWidth: 14,
                       spacing: 7), // your preferred effect
-                  onDotClicked: (index) {}),
+                  onDotClicked: (index) {
+                    setState(() {
+                      pageIndex = index;
+                    });
+                  }),
               const Gap(20),
               // tabs
               ButtonsTabBar(
